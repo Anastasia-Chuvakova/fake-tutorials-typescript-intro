@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import AddTutorial from "./components/AddTutorial";
+import Tutorial from "./components/Tutorial";
+import TutorialsList from "./components/TutorialsList";
+
+const App: React.FC = () => {
+  return(
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="/tutorials">Demo</a>
+        <div className="navbar-nav mr-auto">
+          <li className='nav-item'>
+            <Link to="/tutorials" className='nav-link'>Tutorials</Link>
+          </li>
+          <li className='nav-item'>
+            <Link to="/add" className='nav-link'>Add tutorials</Link>
+          </li>
+        </div>
+      </nav>
+      <div className='container mt-3'>
+        <Routes>
+          <Route path="/" element={<TutorialsList />} />
+          <Route path="/add" element={<AddTutorial />} />
+          <Route path="/tutorials/:id" element={<Tutorial />} />
+        </Routes>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
